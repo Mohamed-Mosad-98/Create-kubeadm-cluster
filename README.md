@@ -459,47 +459,64 @@ The following checks were performed after deployment.
 
 # 📸 Deployment Screenshots
 
-## Overall Cluster Architecture
+## 🏗️ Cluster Architecture
 
-![Architecture](screenshots/architecture.png)
-
----
-
-## Cluster Status
-
-![Cluster](screenshots/01-cluster-overview.png)
+<p align="center">
+  <img src="screenshots/architecture.png" width="100%">
+</p>
 
 ---
 
-## Worker Node 1
+## 📊 Cluster Overview
 
-### Node Information
+<p align="center">
+  <img src="screenshots/01-cluster-overview.png" width="100%">
+</p>
 
-![Node1](screenshots/02-node1-status.png)
+---
 
-### Kubernetes Services
+# 🖥️ Worker Node 1
 
-![Node1 Services](screenshots/03-node1-services.png)
+| Node Information | Kubernetes Services |
+|------------------|---------------------|
+| <img src="screenshots/02-node1-status.png" width="100%"> | <img src="screenshots/03-node1-services.png" width="100%"> |
 
 ### Network Configuration
 
-![Node1 Network](screenshots/04-node1-network.png)
+<p align="center">
+  <img src="screenshots/04-node1-network.png" width="70%">
+</p>
 
 ---
 
-## Worker Node 2
+# 🖥️ Worker Node 2
 
-### Node Information
-
-![Node2](screenshots/05-node2-status.png)
-
-### Kubernetes Services
-
-![Node2 Services](screenshots/06-node2-services.png)
+| Container Runtime | Kubernetes Services |
+|-------------------|---------------------|
+| <img src="screenshots/05-node2-containerd.png" width="100%"> | <img src="screenshots/06-node2-kubelet.png" width="100%"> |
 
 ### Network Configuration
 
-![Node2 Network](screenshots/07-node2-network.png)
+<p align="center">
+  <img src="screenshots/07-node2-network.png" width="70%">
+</p>
+
+---
+
+## ✅ Deployment Summary
+
+The screenshots above verify the successful deployment of a production-style Kubernetes cluster consisting of:
+
+- One Ubuntu 22.04 Control Plane
+- Two Rocky Linux 9 Worker Nodes
+- Kubernetes v1.29.15
+- containerd Runtime
+- Calico CNI
+- CoreDNS
+- kube-proxy
+
+All nodes successfully joined the cluster and reached the **Ready** state.
+
 
 ---
 
