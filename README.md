@@ -337,3 +337,298 @@ br_netfilter
 These settings are required for Kubernetes networking and Calico CNI.
 
 ---
+
+# 🚀 Deployment Workflow
+
+The cluster was deployed manually using **kubeadm**, following Kubernetes best practices.
+
+## Step 1 — Prepare All Nodes
+
+On every machine:
+
+- Update packages
+- Disable swap
+- Configure kernel modules
+- Enable IP forwarding
+- Install containerd
+- Configure SystemdCgroup
+- Install kubeadm, kubelet and kubectl
+- Configure hostname and `/etc/hosts`
+
+---
+
+## Step 2 — Initialize the Control Plane
+
+Initialize Kubernetes on the master node.
+
+```
+
+kubeadm init \
+--pod-network-cidr=172.16.0.0/16
+
+```
+
+After initialization:
+
+- Configure kubectl
+- Verify API Server
+- Generate Worker Join Command
+
+---
+
+## Step 3 — Install Calico CNI
+
+Install Calico networking.
+
+```
+
+kubectl apply -f calico.yaml
+
+```
+
+Calico provides:
+
+- Pod Networking
+- Pod Routing
+- Network Policies
+- Cross-node Communication
+
+---
+
+## Step 4 — Join Worker Nodes
+
+Execute the generated kubeadm join command on each worker node.
+
+```
+
+kubeadm join <MASTER_IP>:6443 \
+--token <TOKEN> \
+--discovery-token-ca-cert-hash sha256:<HASH>
+
+```
+
+After joining:
+
+- kubelet registers the node
+- kube-proxy starts
+- Calico daemon starts
+- Node becomes Ready
+
+---
+
+## Step 5 — Verify the Cluster
+
+Verify cluster health.
+
+```
+
+kubectl get nodes
+
+kubectl get pods -A
+
+kubectl cluster-info
+
+```
+
+Expected Result
+
+- All Nodes Ready
+- CoreDNS Running
+- Calico Running
+- kube-proxy Running
+
+---
+
+# 📊 Cluster Validation
+
+The following checks were performed after deployment.
+
+| Validation | Status |
+|------------|--------|
+| Master Ready | ✅ |
+| Worker 1 Ready | ✅ |
+| Worker 2 Ready | ✅ |
+| CoreDNS Running | ✅ |
+| Calico Running | ✅ |
+| kube-proxy Running | ✅ |
+| API Server Reachable | ✅ |
+| Pod Networking Working | ✅ |
+| DNS Resolution Working | ✅ |
+
+---
+
+# 📸 Deployment Screenshots
+
+## Overall Cluster Architecture
+
+![Architecture](screenshots/architecture.png)
+
+---
+
+## Cluster Status
+
+![Cluster](screenshots/01-cluster-overview.png)
+
+---
+
+## Worker Node 1
+
+### Node Information
+
+![Node1](screenshots/02-node1-status.png)
+
+### Kubernetes Services
+
+![Node1 Services](screenshots/03-node1-services.png)
+
+### Network Configuration
+
+![Node1 Network](screenshots/04-node1-network.png)
+
+---
+
+## Worker Node 2
+
+### Node Information
+
+![Node2](screenshots/05-node2-status.png)
+
+### Kubernetes Services
+
+![Node2 Services](screenshots/06-node2-services.png)
+
+### Network Configuration
+
+![Node2 Network](screenshots/07-node2-network.png)
+
+---
+
+# 🔍 Troubleshooting
+
+During deployment several issues were encountered and successfully resolved.
+
+## Disk Pressure on Control Plane
+
+**Problem**
+
+```
+NodeHasDiskPressure
+```
+
+**Solution**
+
+- Increased VM Disk Size
+- Extended Linux Partition
+- Resized Filesystem
+- Verified Available Storage
+
+---
+
+## Worker Node Join Failure
+
+**Problem**
+
+```
+ip_forward = 0
+```
+
+**Solution**
+
+Enabled:
+
+```
+net.ipv4.ip_forward=1
+```
+
+Applied using:
+
+```
+sysctl --system
+```
+
+---
+
+## Calico Init Failure
+
+**Problem**
+
+```
+Failed to create pod sandbox
+```
+
+**Cause**
+
+Incorrect resolver configuration.
+
+**Solution**
+
+Updated kubelet configuration:
+
+```
+resolvConf: /etc/resolv.conf
+```
+
+Restarted kubelet.
+
+---
+
+## CNI Plugin Not Initialized
+
+**Problem**
+
+```
+NetworkPluginNotReady
+```
+
+**Solution**
+
+Verified:
+
+- containerd
+- kubelet
+- Calico Images
+- Network Configuration
+
+After restarting services, all nodes became Ready.
+
+---
+
+# 🎯 Result
+
+The deployment resulted in a fully operational Kubernetes cluster with:
+
+- One Ubuntu Control Plane
+- Two Rocky Linux Worker Nodes
+- Calico CNI
+- CoreDNS
+- kube-proxy
+- containerd Runtime
+
+The cluster is healthy and ready for deploying containerized workloads.
+
+---
+
+# 📚 References
+
+- Kubernetes Documentation
+- kubeadm Documentation
+- Calico Documentation
+- containerd Documentation
+
+---
+
+# 👨‍💻 Author
+
+**Mohamed Mosad**
+
+Computer & Software Engineer
+
+GitHub:
+https://github.com/Mohamed-Mosad-98
+
+LinkedIn:
+https://www.linkedin.com/in/mohamed-mosad-516aa717b/
+
+---
+
+⭐ If you found this project helpful, consider giving the repository a Star.
