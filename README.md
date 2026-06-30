@@ -125,3 +125,215 @@ The architecture above illustrates the complete Kubernetes cluster built during 
 | VMware Workstation | Virtualization Platform |
 
 ---
+
+# 📁 Project Structure
+
+```
+Create-kubeadm-cluster/
+│
+├── README.md
+│
+└── screenshots/
+    ├── architecture.png
+    ├── 01-cluster-overview.png
+    ├── 02-master-node.png
+    ├── 03-node1-status.png
+    ├── 04-node1-services.png
+    ├── 05-node1-network.png
+    ├── 06-node2-status.png
+    ├── 07-node2-services.png
+    └── 08-node2-network.png
+```
+
+---
+
+# 🌐 Network Configuration
+
+The Kubernetes cluster was deployed inside a **VMware Host-Only Network**, allowing secure communication between all virtual machines without exposing the cluster externally.
+
+| Network Component | Value |
+|-------------------|-------|
+| Network Type | VMware Host-Only |
+| Network Address | 192.168.75.0/24 |
+| Kubernetes API Server | 192.168.75.129:6443 |
+| Pod Network | Calico |
+| Pod CIDR | 172.16.0.0/16 |
+| Service CIDR | 10.96.0.0/12 |
+
+---
+
+# 🖥️ Virtual Machines
+
+## Control Plane
+
+| Property | Value |
+|----------|-------|
+| Hostname | master |
+| Operating System | Ubuntu Server 22.04.5 LTS |
+| Kubernetes Version | v1.29.15 |
+| Runtime | containerd |
+| IP Address | 192.168.75.129 |
+
+Responsible for:
+
+- Kubernetes API Server
+- Scheduler
+- Controller Manager
+- etcd
+- Cluster Management
+
+---
+
+## Worker Node 1
+
+| Property | Value |
+|----------|-------|
+| Hostname | node1 |
+| Operating System | Rocky Linux 9 |
+| Runtime | containerd |
+| IP Address | 192.168.75.146 |
+
+Responsible for:
+
+- Running Application Pods
+- kubelet
+- kube-proxy
+- Calico Node
+
+---
+
+## Worker Node 2
+
+| Property | Value |
+|----------|-------|
+| Hostname | node2 |
+| Operating System | Rocky Linux 9 |
+| Runtime | containerd |
+| IP Address | 192.168.75.147 |
+
+Responsible for:
+
+- Running Application Pods
+- kubelet
+- kube-proxy
+- Calico Node
+
+---
+
+# ⚙️ Kubernetes Components
+
+| Component | Description |
+|-----------|-------------|
+| kubeadm | Bootstrap and initialize the cluster |
+| kubelet | Node Agent running on every machine |
+| kubectl | Kubernetes CLI |
+| containerd | Container Runtime Interface (CRI) |
+| kube-proxy | Cluster networking and service routing |
+| CoreDNS | Internal DNS resolution |
+| Calico | Pod Networking (CNI) |
+| etcd | Kubernetes Key-Value Store |
+| kube-apiserver | Main Kubernetes API |
+| kube-controller-manager | Cluster Controllers |
+| kube-scheduler | Pod Scheduling |
+
+---
+
+# 📦 Software Versions
+
+| Software | Version |
+|-----------|----------|
+| Kubernetes | v1.29.15 |
+| kubeadm | v1.29.15 |
+| kubelet | v1.29.15 |
+| kubectl | v1.29.15 |
+| containerd | 2.x |
+| Calico | v3.30.2 |
+| Ubuntu | 22.04.5 LTS |
+| Rocky Linux | 9 |
+| VMware Workstation | Latest |
+
+---
+
+# ✅ Cluster Features
+
+✔ Multi-Node Kubernetes Cluster
+
+✔ Manual kubeadm Installation
+
+✔ Containerd Runtime
+
+✔ Calico Networking
+
+✔ CoreDNS
+
+✔ kube-proxy
+
+✔ Worker Nodes Successfully Joined
+
+✔ Pod-to-Pod Communication
+
+✔ Internal DNS Resolution
+
+✔ Cluster Networking Validation
+
+✔ Production-style Architecture
+
+---
+
+# 📋 Prerequisites
+
+Before deploying the cluster, the following configurations were completed on all nodes.
+
+### System Preparation
+
+- Hostnames configured
+- Static IP addresses assigned
+- `/etc/hosts` configured
+- Time synchronization verified
+
+### Linux Configuration
+
+- Swap disabled
+- Required kernel modules loaded
+- IP forwarding enabled
+- Bridge networking enabled
+
+### Container Runtime
+
+- containerd installed
+- SystemdCgroup enabled
+- containerd service enabled
+- CRI verified
+
+### Kubernetes Packages
+
+- kubeadm
+- kubelet
+- kubectl
+
+---
+
+# 🔧 Linux Kernel Configuration
+
+The following kernel parameters were configured on every node.
+
+```
+
+net.bridge.bridge-nf-call-iptables = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.ipv4.ip_forward = 1
+
+```
+
+Kernel modules loaded:
+
+```
+
+overlay
+br_netfilter
+
+```
+
+These settings are required for Kubernetes networking and Calico CNI.
+
+---
