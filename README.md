@@ -462,7 +462,8 @@ The following checks were performed after deployment.
 ## 🏗️ Cluster Architecture
 
 <p align="center">
-  <img src="screenshots/architecture.png" width="100%">
+  <img width="1536" height="1024" alt="digrame" src="https://github.com/user-attachments/assets/1faac608-7373-4fef-ba38-47db77d4ec61" />
+
 </p>
 
 ---
@@ -470,7 +471,8 @@ The following checks were performed after deployment.
 ## 📊 Cluster Overview
 
 <p align="center">
-  <img src="screenshots/01-cluster-overview.png" width="100%">
+  <img width="1677" height="527" alt="1" src="https://github.com/user-attachments/assets/62aa288d-8daf-4c50-88a9-f67e87b5567c" />
+
 </p>
 
 ---
@@ -479,7 +481,9 @@ The following checks were performed after deployment.
 
 | Node Information | Kubernetes Services |
 |------------------|---------------------|
-| <img src="screenshots/02-node1-status.png" width="100%"> | <img src="screenshots/03-node1-services.png" width="100%"> |
+| <img width="1677" height="527" alt="2" src="https://github.com/user-attachments/assets/1488a581-a761-43fc-aba4-fff6e732cc3f" />
+ | ![Uploading 3.png…]()
+ |
 
 ### Network Configuration
 
