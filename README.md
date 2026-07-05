@@ -1,4 +1,4 @@
-# 🚀 Kubernetes Cluster Deployment using kubeadm
+#  Kubernetes Cluster Deployment using kubeadm
 
 <div align="center">
 
