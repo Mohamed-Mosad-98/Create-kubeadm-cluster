@@ -91,7 +91,7 @@ The main objectives of this project were:
 
 <p align="center">
 
-<img src="screenshots/architecture.png" width="1000">
+<img width="1536" height="1024" alt="digrame" src="https://github.com/user-attachments/assets/e3d741d1-fc8f-444f-8b23-47166fd030c9" />
 
 </p>
 
