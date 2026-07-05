@@ -462,16 +462,19 @@ The following checks were performed after deployment.
 ## 🏗️ Cluster Architecture
 
 <p align="center">
-  <img width="1536" height="1024" alt="digrame" src="https://github.com/user-attachments/assets/1faac608-7373-4fef-ba38-47db77d4ec61" />
+ <img width="1536" height="1024" alt="digrame" src="https://github.com/user-attachments/assets/d7eedf37-4139-481d-bed0-0ba2d5732198" />
+
 
 </p>
 
 ---
 
-## 📊 Cluster Overview
+## 🌐 Cluster Status
+
+Shows the overall cluster status including all nodes, Kubernetes version, and system pods.
 
 <p align="center">
-  <img width="1677" height="527" alt="1" src="https://github.com/user-attachments/assets/62aa288d-8daf-4c50-88a9-f67e87b5567c" />
+ <img width="1677" height="527" alt="1" src="https://github.com/user-attachments/assets/0765d414-6dd0-40e8-b19a-3a1b728bfc47" />
 
 </p>
 
@@ -479,47 +482,79 @@ The following checks were performed after deployment.
 
 # 🖥️ Worker Node 1
 
-| Node Information | Kubernetes Services |
-|------------------|---------------------|
-| <img width="1677" height="527" alt="2" src="https://github.com/user-attachments/assets/1488a581-a761-43fc-aba4-fff6e732cc3f" />
- | ![Uploading 3.png…]()
- |
+### 📌 Node Information
 
-### Network Configuration
+Hostname and IP address of Worker Node 1.
 
 <p align="center">
-  <img src="screenshots/04-node1-network.png" width="70%">
+ <img width="1677" height="527" alt="2" src="https://github.com/user-attachments/assets/f7d5dadf-f878-4e74-a653-99559f5d7d70" />
+
+</p>
+
+### 📌 Kubernetes Services
+
+Verifies that **containerd** and **kubelet** services are running correctly.
+
+<p align="center">
+  <img width="1670" height="521" alt="3" src="https://github.com/user-attachments/assets/052e1597-5422-4949-aa69-b474e222d5da" />
+
+</p>
+
+### 📌 Network Configuration
+
+Shows the hosts file, kernel modules, and IP forwarding configuration.
+
+<p align="center">
+  <img width="1053" height="145" alt="4" src="https://github.com/user-attachments/assets/4be2b4d4-7cc9-412a-a60f-e96d18dee573" />
+
 </p>
 
 ---
 
 # 🖥️ Worker Node 2
 
-| Container Runtime | Kubernetes Services |
-|-------------------|---------------------|
-| <img src="screenshots/05-node2-containerd.png" width="100%"> | <img src="screenshots/06-node2-kubelet.png" width="100%"> |
+### 📌 Node Information
 
-### Network Configuration
+Hostname and IP address of Worker Node 2.
 
 <p align="center">
-  <img src="screenshots/07-node2-network.png" width="70%">
+  <img width="1662" height="601" alt="6" src="https://github.com/user-attachments/assets/4e709cf4-7847-4930-991a-e8b6acc1b010" />
+
+</p>
+
+### 📌 Kubernetes Services
+
+Verifies that **containerd** and **kubelet** services are running correctly.
+
+<p align="center">
+ <img width="1667" height="275" alt="7" src="https://github.com/user-attachments/assets/f94e48d5-046f-49f9-9aba-b333b6a6a476" />
+
+</p>
+
+### 📌 Network Configuration
+
+Shows the hosts file, kernel modules, and IP forwarding configuration.
+
+<p align="center">
+  <img width="1547" height="247" alt="8" src="https://github.com/user-attachments/assets/d5e1ca98-e233-4aaf-9ae4-b7ec50c7b4e7" />
+
 </p>
 
 ---
 
-## ✅ Deployment Summary
+## ✅ Deployment Verification
 
-The screenshots above verify the successful deployment of a production-style Kubernetes cluster consisting of:
+The screenshots confirm that:
 
-- One Ubuntu 22.04 Control Plane
-- Two Rocky Linux 9 Worker Nodes
-- Kubernetes v1.29.15
-- containerd Runtime
-- Calico CNI
-- CoreDNS
-- kube-proxy
-
-All nodes successfully joined the cluster and reached the **Ready** state.
+- All three nodes successfully joined the Kubernetes cluster.
+- The Control Plane is running on Ubuntu 22.04.
+- Worker Node 1 and Worker Node 2 are running Rocky Linux 9.
+- Calico CNI is deployed successfully.
+- CoreDNS is running correctly.
+- containerd is configured as the container runtime.
+- kubelet service is active on all worker nodes.
+- Required networking configuration (br_netfilter and ip_forward) is enabled.
+- All nodes reached the **Ready** state.
 
 
 ---
