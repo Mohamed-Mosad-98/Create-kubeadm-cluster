@@ -459,15 +459,7 @@ The following checks were performed after deployment.
 
 # 📸 Deployment Screenshots
 
-## 🏗️ Cluster Architecture
 
-<p align="center">
- <img width="1536" height="1024" alt="digrame" src="https://github.com/user-attachments/assets/d7eedf37-4139-481d-bed0-0ba2d5732198" />
-
-
-</p>
-
----
 
 ## 🌐 Cluster Status
 
