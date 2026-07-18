@@ -13,7 +13,7 @@
 
 ---
 
-# 📖 Project Overview
+#  Project Overview
 
 This project demonstrates the complete deployment of a **production-style Kubernetes cluster** using **kubeadm**.
 
@@ -44,7 +44,7 @@ Each problem was analyzed and resolved until the cluster reached a healthy produ
 
 ---
 
-# 🎯 Project Objectives
+#  Project Objectives
 
 The main objectives of this project were:
 
@@ -60,7 +60,7 @@ The main objectives of this project were:
 
 ---
 
-# 🖥️ Infrastructure
+#  Infrastructure
 
 | Component | Details |
 |-----------|---------|
